@@ -13,24 +13,24 @@ def main():
     algo_seed = None
     num_samples = 100
 
-    k = 10
-    n = 2 * k
-    m = int(k ** 1.5)
-    adj = generate_rand_graph(n, m, seed=graph_seed)
+    # k = 10
+    # n = 2 * k
+    # m = int(k ** 1.5)
+    # adj = generate_rand_graph(n, m, seed=graph_seed)
+    adj = read_csv("./input/vpcnode.csv")
     cut_submod = Cut(adj)
 
     mode = 'normal'
     constraint = 'leq'
     print('Running Random Greedy')
     # approx_val = get_mean(lambda: random_greedy(cut_submod, k, mode, constraint,
-    #                                             seed=algo_seed)[1],
-    #                       num_samples)
+    #                                             seed=algo_seed)[1], num_samples)
 
     print('Running Brute Force\n')
     opt = 15.066
     lower = opt * (1 - 1 / math.e)
     # opt = brute_force(cut_submod, k, constraint)
-    # print('Approx OBJ:', approx_val)
+    print('Approx OBJ:', approx_val)
     print('OPT:', opt)
     print('Lower bound:', lower)
     approx_set, _ = random_greedy(cut_submod, k, mode, constraint,
